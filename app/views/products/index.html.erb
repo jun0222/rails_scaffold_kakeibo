@@ -18,7 +18,7 @@
         <td><%= product.shop %></td>
         <td><%= product.kind %></td>
         <td><%= product.price %></td>
-        <td>2023/02/17</td>
+        <td><%= product.purchased_at.to_date %></td>
         <td><%= link_to 'Edit', edit_product_path(product) %></td>
         <td><%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
@@ -28,4 +28,30 @@
 </div>
 <br>
 
+<%= select_tag 'year', options_for_select((2010..DateTime.now.year).reverse_each, selected: @now_year), class: 'btn btn-secondary dropdown-toggle' %>
+<%= select_tag 'month', options_for_select(1..12, selected: @now_month), class: 'btn btn-secondary dropdown-toggle' %>
+<%= link_to '移動', products_path(month: @now_month, year: @now_year), class: 'btn btn-success text-white', id: 'move-btn' %>
 <%= link_to '新規入力', new_product_path, class: 'btn btn-primary text-white' %>
+
+
+<script>
+  // クエリパラメータ抜きのURL
+  var nonParamsUrl = window.location.href.substr(0, window.location.href.indexOf('?'));
+
+  // 年のプルダウン
+  var yearPulldown = document.getElementById('year');
+
+  // 月のプルダウン
+  var monthPulldown = document.getElementById('month');
+
+  // プルダウンの値を元に移動ボタンのリンクを変える
+  function refreshMoveLink(){
+    let selectedYear = document.getElementById('year').value
+    let selectedMonth = document.getElementById('month').value
+    document.getElementById('move-btn').href = `${nonParamsUrl}?month=${selectedMonth}&year=${selectedYear}`
+  }
+
+  // 年か月を選択したときにリンクを変える関数を発火
+  yearPulldown.addEventListener('change',refreshMoveLink,false)
+  monthPulldown.addEventListener('change',refreshMoveLink,false)
+</script>

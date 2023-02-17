@@ -3,7 +3,11 @@ class ProductsController < ApplicationController
 
   # GET /products or /products.json
   def index
-    @products = Product.all
+    @now_month = params[:month] || DateTime.now.month
+    @now_year = params[:year] || DateTime.now.year
+    now_year_month = Date.new(@now_year.to_i, @now_month.to_i)
+    @products = Product.where("purchased_at >= :begin_date", :begin_date => now_year_month.beginning_of_month)
+                        .where("purchased_at <= :end_date", :end_date => now_year_month.end_of_month)
   end
 
   # GET /products/1 or /products/1.json
