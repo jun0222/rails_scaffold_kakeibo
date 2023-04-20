@@ -30,8 +30,8 @@
 
 <%= select_tag 'year', options_for_select((2010..DateTime.now.year).reverse_each, selected: @now_year), class: 'btn btn-secondary dropdown-toggle' %>
 <%= select_tag 'month', options_for_select(1..12, selected: @now_month), class: 'btn btn-secondary dropdown-toggle' %>
-<%= link_to '移動', products_path(month: @now_month, year: @now_year), class: 'btn btn-success text-white', id: 'move-btn' %>
 <%= link_to '新規入力', new_product_path, class: 'btn btn-primary text-white' %>
+<%= link_to '移動', products_path(month: @now_month, year: @now_year), class: 'btn btn-success text-white', id: 'move-btn', style: 'display:none;' %>
 
 
 <script>
@@ -49,6 +49,7 @@
     let selectedYear = document.getElementById('year').value
     let selectedMonth = document.getElementById('month').value
     document.getElementById('move-btn').href = `${nonParamsUrl}?month=${selectedMonth}&year=${selectedYear}`
+    document.getElementById('move-btn').click()
   }
 
   // 年か月を選択したときにリンクを変える関数を発火
