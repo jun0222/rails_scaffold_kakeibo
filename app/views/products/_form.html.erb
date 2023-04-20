@@ -1,6 +1,6 @@
-<%= form_with(model: product, local: true) do |form| %>
+<%= form_with(model: product, local: true, html: { class: 'needs-validation', novalidate: true }) do |form| %>
   <% if product.errors.any? %>
-    <div id="error_explanation">
+    <div id="error_explanation" class="alert alert-danger">
       <h2><%= pluralize(product.errors.count, "error") %> prohibited this product from being saved:</h2>
 
       <ul>
@@ -11,22 +11,25 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :shop %>
-    <%= form.text_field :shop %>
+  <div class="form-group">
+    <%= form.label :shop, class: 'control-label' %>
+    <%= form.text_field :shop, class: 'form-control', required: true %>
+    <div class="invalid-feedback">Please enter a shop name.</div>
   </div>
 
-  <div class="field">
-    <%= form.label :kind %>
-    <%= form.text_field :kind %>
+  <div class="form-group">
+    <%= form.label :kind, class: 'control-label' %>
+    <%= form.text_field :kind, class: 'form-control', required: true %>
+    <div class="invalid-feedback">Please enter a kind.</div>
   </div>
 
-  <div class="field">
-    <%= form.label :price %>
-    <%= form.number_field :price %>
+  <div class="form-group">
+    <%= form.label :price, class: 'control-label' %>
+    <%= form.number_field :price, class: 'form-control', required: true %>
+    <div class="invalid-feedback">Please enter a price.</div>
   </div>
 
-  <div class="actions">
-    <%= form.submit %>
+  <div class="form-group">
+    <%= form.submit 'Save Product', class: 'btn btn-primary' %>
   </div>
 <% end %>
