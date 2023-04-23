@@ -1,38 +1,57 @@
+<div class="container">
 <p id="notice"><%= notice %></p>
 
 <div class="table-responsive">
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th>店舗</th>
-      <th>種別</th>
-      <th>価格</th>
-      <th>日付</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+  <table class="table table-striped">
 
-  <tbody>
-    <% @products.each do |product| %>
+    <h2>
+      <% if params[:year] && params[:month] %>
+        <%= "#{params[:year]}年#{params[:month]}月" %>
+      <% else %>
+        <%= Date.today.strftime('%Y年%m月') %>
+      <% end %>
+    </h2>
+
+    <thead>
       <tr>
-        <td><%= product.shop %></td>
-        <td><%= product.kind %></td>
-        <td><%= product.price %></td>
-        <td><%= product.purchased_at.to_date %></td>
-        <td><%= link_to 'Edit', edit_product_path(product) %></td>
-        <td><%= link_to 'Destroy', product, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <th class="fs-3 py-3"><%= Settings.label.shop %></th>
+        <th class="fs-3 py-3"><%= Settings.label.kind %></th>
+        <th class="fs-3 py-3"><%= Settings.label.price %></th>
+        <th class="fs-3 py-3"><%= Settings.label.purchased_at %></th>
+        <th colspan="3"></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+
+    <tbody>
+      <% @products.each do |product| %>
+        <tr>
+          <td class="fs-3 py-3"><%= product.shop %></td>
+          <td class="fs-3 py-3"><%= product.kind %></td>
+          <td class="fs-3 py-3"><%= product.price %></td>
+          <td class="fs-3 py-3"><%= product.purchased_at.to_date.day %></td>
+          <td class="fs-3 py-3"><%= link_to '', edit_product_path(product), class: 'fas fa-edit' %></td>
+          <td class="fs-3 py-3"><%= link_to '', product, method: :delete, data: { confirm: '削除しても良いですか？' }, class: 'fas fa-trash' %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 </div>
 <br>
 
-<%= select_tag 'year', options_for_select((2010..DateTime.now.year).reverse_each, selected: @now_year), class: 'btn btn-secondary dropdown-toggle' %>
-<%= select_tag 'month', options_for_select(1..12, selected: @now_month), class: 'btn btn-secondary dropdown-toggle' %>
-<%= link_to '新規入力', new_product_path, class: 'btn btn-primary text-white' %>
-<%= link_to '移動', products_path(month: @now_month, year: @now_year), class: 'btn btn-success text-white', id: 'move-btn', style: 'display:none;' %>
-
+<div class="row">
+  <div class="mb-3">
+    <%= select_tag 'year', options_for_select((2010..DateTime.now.year).reverse_each, selected: @now_year), class: 'form-select' %>
+  </div>
+  <div class="mb-3">
+    <%= select_tag 'month', options_for_select(1..12, selected: @now_month), class: 'form-select' %>
+  </div>
+  <div class="text-end">
+    <%= link_to '', new_product_path, class: 'btn btn-primary text-white btn-lg fas fa-plus' %>
+  </div>
+  <div class="text-end">
+    <%= link_to '移動', products_path(month: @now_month, year: @now_year), class: 'btn btn-success text-white', id: 'move-btn', style: 'display:none;' %>
+  </div>
+</div>
 
 <script>
   // クエリパラメータ抜きのURL

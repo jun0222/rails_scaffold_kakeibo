@@ -1,0 +1,5 @@
+label:
+  shop: 店舗
+  kind: 種別
+  price: 価格
+  purchased_at: 購入日
