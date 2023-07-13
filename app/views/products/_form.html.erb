@@ -1,3 +1,4 @@
+<%# スマホで見たときに小さくてみにくいからgptに直してもらう %>
 <%= form_with(model: product, local: true, html: { class: 'needs-validation', novalidate: true }) do |form| %>
   <% if product.errors.any? %>
     <div id="error_explanation" class="alert alert-danger">
