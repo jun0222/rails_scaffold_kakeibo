@@ -9,6 +9,7 @@
   - [WARN rbenv: 2.4.1 is not installed or not found in $HOME/.rbenv/versions/2.4.1 on IP アドレス](#warn-rbenv-241-is-not-installed-or-not-found-in-homerbenvversions241-on-ip-アドレス)
   - [cap aborted! SSHKit::Runner::ExecuteError: Exception while executing as](#cap-aborted-sshkitrunnerexecuteerror-exception-while-executing-as)
   - [bundle exec cap production deploy:db_create ができない](#bundle-exec-cap-production-deploydb_create-ができない)
+  - [bundler のバージョンがあっていても can't find gem bundler](#bundler-のバージョンがあっていても-cant-find-gem-bundler)
 - [デプロイ参考記事](#デプロイ参考記事)
 
 <!-- /TOC -->
@@ -60,6 +61,21 @@ ssh-add ~/.ssh/id_rsa
 ## bundle exec cap production deploy:db_create ができない
 
 直接サーバーで SQL を実行。
+
+## bundler のバージョンがあっていても can't find gem bundler
+
+```bash
+bundler:config
+$HOME/.rbenv/bin/rbenv exec bundle config --local deployment true
+/home/jun/.rbenv/versions/2.5.1/lib/ruby/2.5.0/rubygems.rb:289:in `find_spec_for_exe'
+:
+can't find gem bundler (>= 0.a) with executable bundle
+ (
+Gem::GemNotFoundException
+```
+
+必要なデプロイの設定の修正を git push できていなかっただけ。push して解決。  
+（やはり上手くいかないなら、手順書レベルの基本を見直すべき）
 
 # デプロイ参考記事
 
