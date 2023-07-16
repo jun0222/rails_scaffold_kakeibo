@@ -1,5 +1,5 @@
 # capistranoのバージョン固定
-lock "3.17.2"
+lock "3.17.3"
 
 # デプロイするアプリケーション名
 set :application, 'kakeibo'
@@ -25,7 +25,7 @@ set :keep_releases, 5
 
 # rubyのバージョン
 # rbenvで設定したサーバー側のrubyのバージョン
-set :rbenv_ruby, '2.4.1'
+set :rbenv_ruby, '2.5.1'
 
 # 出力するログのレベル。
 set :log_level, :debug
@@ -45,7 +45,7 @@ namespace :deploy do
     on roles(:db) do |host|
       with rails_env: fetch(:rails_env) do
         within current_path do
-                  # データベース作成のsqlセット
+                # データベース作成のsqlセット
                 # データベース名はdatabase.ymlに設定した名前で
                   sql = "CREATE DATABASE IF NOT EXISTS kakeibo_production;"
                   # クエリの実行。
