@@ -1,7 +1,8 @@
 <!-- TOC -->
 
-- [画面](#画面)
-- [参考記事](#参考記事)
+- [Rails の全部盛りリポジトリ](#rails-の全部盛りリポジトリ)
+- [家計簿機能画面](#家計簿機能画面)
+- [家計簿機能参考記事](#家計簿機能参考記事)
 - [エラー](#エラー)
   - [NoMethodError: undefined method \`match' for nil:NilClass](#nomethoderror-undefined-method-match-for-nilnilclass)
     - [内容](#内容)
@@ -11,14 +12,27 @@
   - [bundle exec cap production deploy:db_create ができない](#bundle-exec-cap-production-deploydb_create-ができない)
   - [bundler のバージョンがあっていても can't find gem bundler](#bundler-のバージョンがあっていても-cant-find-gem-bundler)
 - [デプロイ参考記事](#デプロイ参考記事)
+- [bundler のバージョン切り替え（2.3.26 にしたい場合）](#bundler-のバージョン切り替え2326-にしたい場合)
+- [デプロイコマンド](#デプロイコマンド)
+- [webpacker のエラー ERR_OSSL_EVP_UNSUPPORTED でデプロイできない](#webpacker-のエラー-err_ossl_evp_unsupported-でデプロイできない)
 
 <!-- /TOC -->
 
-# 画面
+# Rails の全部盛りリポジトリ
+
+TODO: リポジトリ名変更
+
+- 個人用ツール
+- ライブラリの動作確認
+- 実装試しうち
+- 設計(必要ならブランチごとにかえる、その場合別ブランチは継続運用するというより単一の変更を試すために使う。色々合わせた確認がしたいならそれ用に作る)
+- 試したソースコードなどにコメントや、ドキュメントを細かくつけて再利用可能にする
+
+# 家計簿機能画面
 
 ![picture 1](images/6d6cbe471ffd83526df01926d5e36572ccc6eec6b8a5b5dedc230c0c61386354.png)
 
-# 参考記事
+# 家計簿機能参考記事
 
 - [Rails scaffold を初心者向けに解説！実際にアプリを作ってみよう！](https://udemy.benesse.co.jp/development/system/scaffold.html)
 - [Ruby on Rails 4 と Bootstrap で管理画面のレイアウトを作成する](https://www.imd-net.com/column/2760/)
@@ -81,3 +95,20 @@ Gem::GemNotFoundException
 
 - [(初心者向け）vps を契約して、capistrano3 で Rails アプリをデプロイするまで [その 1 サーバー設定編]](https://qiita.com/ryo2132/items/f62690f0b16ec11270fe)
 - [(初心者向け）vps を契約して、Capistrano3 で Rails アプリをデプロイするまで [その 2 ローカル設定編]](https://qiita.com/ryo2132/items/03f5f52b43742f5aef10)
+
+# bundler のバージョン切り替え（2.3.26 にしたい場合）
+
+```bash
+gem install bundler -v 2.3.26
+bundle _2.3.26_ --version
+```
+
+# デプロイコマンド
+
+```
+bundle exec cap production deploy
+```
+
+# webpacker のエラー ERR_OSSL_EVP_UNSUPPORTED でデプロイできない
+
+https://www.nslabs.jp/rails-switch-from-webpacker-to-jsbundling-rails.rhtml
