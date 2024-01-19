@@ -15,6 +15,8 @@
 - [bundler のバージョン切り替え（2.3.26 にしたい場合）](#bundler-のバージョン切り替え2326-にしたい場合)
 - [デプロイコマンド](#デプロイコマンド)
 - [webpacker のエラー ERR_OSSL_EVP_UNSUPPORTED でデプロイできない](#webpacker-のエラー-err_ossl_evp_unsupported-でデプロイできない)
+- [git@github.com: Permission denied (publickey). でデプロイできない](#gitgithubcom-permission-denied-publickey-でデプロイできない)
+- [デプロイエラー Compilation failed: Browserslist: caniuse-lite is outdated. Please run: npx update-browserslist-db@latest](#デプロイエラー-compilation-failed-browserslist-caniuse-lite-is-outdated-please-run-npx-update-browserslist-dblatest)
 
 <!-- /TOC -->
 
@@ -112,3 +114,23 @@ bundle exec cap production deploy
 # webpacker のエラー ERR_OSSL_EVP_UNSUPPORTED でデプロイできない
 
 https://www.nslabs.jp/rails-switch-from-webpacker-to-jsbundling-rails.rhtml
+
+# git@github.com: Permission denied (publickey). でデプロイできない
+
+[参考](https://stackoverflow.com/questions/7968656/why-is-a-cap-deploy-giving-permission-denied-publickey)
+
+```bash
+ssh-add -k
+```
+
+# デプロイエラー Compilation failed: Browserslist: caniuse-lite is outdated. Please run: npx update-browserslist-db@latest
+
+node が新しいことによって起きている。
+deploy.rb に以下を追加することで解決。
+
+```ruby
+# 環境変数の設定
+set :default_env, {
+  'NODE_OPTIONS' => '--openssl-legacy-provider'
+}
+```

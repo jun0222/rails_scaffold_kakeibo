@@ -30,6 +30,11 @@ set :rbenv_ruby, '2.5.1'
 # 出力するログのレベル。
 set :log_level, :debug
 
+# 環境変数の設定
+set :default_env, {
+  'NODE_OPTIONS' => '--openssl-legacy-provider'
+}
+
 # デプロイのタスク
 namespace :deploy do
 
