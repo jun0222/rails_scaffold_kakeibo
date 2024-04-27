@@ -1,25 +1,3 @@
-<!-- TOC -->
-
-- [Rails の全部盛りリポジトリ](#rails-の全部盛りリポジトリ)
-- [家計簿機能画面](#家計簿機能画面)
-- [家計簿機能参考記事](#家計簿機能参考記事)
-- [エラー](#エラー)
-  - [NoMethodError: undefined method \`match' for nil:NilClass](#nomethoderror-undefined-method-match-for-nilnilclass)
-    - [内容](#内容)
-    - [対応](#対応)
-  - [WARN rbenv: 2.4.1 is not installed or not found in $HOME/.rbenv/versions/2.4.1 on IP アドレス](#warn-rbenv-241-is-not-installed-or-not-found-in-homerbenvversions241-on-ip-アドレス)
-  - [cap aborted! SSHKit::Runner::ExecuteError: Exception while executing as](#cap-aborted-sshkitrunnerexecuteerror-exception-while-executing-as)
-  - [bundle exec cap production deploy:db_create ができない](#bundle-exec-cap-production-deploydb_create-ができない)
-  - [bundler のバージョンがあっていても can't find gem bundler](#bundler-のバージョンがあっていても-cant-find-gem-bundler)
-- [デプロイ参考記事](#デプロイ参考記事)
-- [bundler のバージョン切り替え（2.3.26 にしたい場合）](#bundler-のバージョン切り替え2326-にしたい場合)
-- [デプロイコマンド](#デプロイコマンド)
-- [webpacker のエラー ERR_OSSL_EVP_UNSUPPORTED でデプロイできない](#webpacker-のエラー-err_ossl_evp_unsupported-でデプロイできない)
-- [git@github.com: Permission denied (publickey). でデプロイできない](#gitgithubcom-permission-denied-publickey-でデプロイできない)
-- [デプロイエラー Compilation failed: Browserslist: caniuse-lite is outdated. Please run: npx update-browserslist-db@latest](#デプロイエラー-compilation-failed-browserslist-caniuse-lite-is-outdated-please-run-npx-update-browserslist-dblatest)
-
-<!-- /TOC -->
-
 # Rails の全部盛りリポジトリ
 
 TODO: リポジトリ名変更
@@ -133,4 +111,23 @@ deploy.rb に以下を追加することで解決。
 set :default_env, {
   'NODE_OPTIONS' => '--openssl-legacy-provider'
 }
+```
+
+# 状況
+
+mysql 繋がらない。パスワード利用で db ダメ。
+ssh した方が良さそう。
+
+# cli から rubocop 実行
+
+```bash
+bundle exec rubocop -a パス
+```
+
+# デプロイエラー git@github.com: Permission denied (publickey).
+
+github 用の key を ssh-add する必要があるのに、vps の key を ssh-add していた。以下で解決。
+
+```bash
+ssh-add github用のkey
 ```
