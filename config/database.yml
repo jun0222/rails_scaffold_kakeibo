@@ -25,3 +25,8 @@ production:
   encoding: utf8
   pool: 5
   database: kakeibo_production
+  username: jun
+  password: <%= ENV['KAKEIBO_DATABASE_PASSWORD'] %>
+  socket: /var/lib/mysql/mysql.sock
+  host: localhost
+  port: 3306

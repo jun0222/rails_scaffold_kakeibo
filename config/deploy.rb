@@ -32,7 +32,8 @@ set :log_level, :debug
 
 # 環境変数の設定
 set :default_env, {
-  'NODE_OPTIONS' => '--openssl-legacy-provider'
+  'NODE_OPTIONS' => '--openssl-legacy-provider',
+  'KAKEIBO_DATABASE_PASSWORD' => ENV["KAKEIBO_DATABASE_PASSWORD"]
 }
 
 # デプロイのタスク
