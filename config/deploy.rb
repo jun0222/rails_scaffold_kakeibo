@@ -1,5 +1,5 @@
 # capistranoのバージョン固定
-lock "3.17.3"
+lock "3.18.1"
 
 # デプロイするアプリケーション名
 set :application, 'kakeibo'
