@@ -48,6 +48,7 @@ group :development do
   gem 'capistrano-rbenv'
   gem 'ed25519'
   gem 'bcrypt_pbkdf'
+  gem 'rubocop', require: false
 end
 
 group :test do
