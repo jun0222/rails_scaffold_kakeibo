@@ -61,7 +61,7 @@ ssh-add ~/.ssh/id_rsa
 ```bash
 bundler:config
 $HOME/.rbenv/bin/rbenv exec bundle config --local deployment true
-/home/jun/.rbenv/versions/2.5.1/lib/ruby/2.5.0/rubygems.rb:289:in `find_spec_for_exe'
+/home/username/.rbenv/versions/2.5.1/lib/ruby/2.5.0/rubygems.rb:289:in `find_spec_for_exe'
 :
 can't find gem bundler (>= 0.a) with executable bundle
  (

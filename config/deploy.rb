@@ -6,7 +6,7 @@ set :application, 'kakeibo'
 
 # cloneするgitのレポジトリ
 # 1-3で設定したリモートリポジトリのurl
-set :repo_url, 'git@github.com:jun0222/rails_scaffold_kakeibo.git'
+set :repo_url, ENV['CONOHA_ROR_REPO_URL']
 
 # deployするブランチ。デフォルトはmainなのでなくても可。
 set :branch, 'main'
