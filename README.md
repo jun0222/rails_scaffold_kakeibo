@@ -295,4 +295,25 @@ cap production unicorn:start
 # 本番環境でだけ Settings.yml が本番でだけ読み込まれない
 
 ファイル名を本来の settings.yml（先頭小文字にしたらいけた）
+
+# デプロイ時注意
+
+- まずは healthcheck から。それが通らないと次に進めない。
+- できたらブランクのプロジェクトデプロイからが変数少なく確実。
+- 500 エラーなどはアプリケーションよりも、低レイヤーの確認も必要。unicorn や nginx のログを見るのがそう。
+- まずはログを出す、それがないと何が起きているかわからない。
+
+# デプロイプロセス
+
+```bash
+# デプロイコマンド実行 もしかしたらこれだけでいけるかも？
+bundle exec cap production deploy
+
+# サーバー側でunicornのプロセスをkill
+ps -ef | grep unicorn | grep -v grep
+
+# ローカルでunicorn起動
+# コメントアウトを外してから実行する
+bundle exec cap production unicorn:start
 ```
+
