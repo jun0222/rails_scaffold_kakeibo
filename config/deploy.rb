@@ -14,14 +14,16 @@ set :branch, 'main'
 # deploy先のディレクトリ。
 set :deploy_to, '/var/www/kakeibo'
 
+
 # シンボリックリンクをはるファイル
-set :linked_files, fetch(:linked_files, []).push('config/secrets.yml')
+# configなんとかyml系。サーバー側へプッシュ必要。
+set :linked_files, fetch(:linked_files, []).push('config/settings.yml', 'config/database.yml', 'config/credentials.yml.enc')
 
 # シンボリックリンクをはるフォルダ
 set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system')
 
 # 保持するバージョンの個数(※後述)
-set :keep_releases, 5
+set :keep_releases, 1
 
 # rubyのバージョン
 # rbenvで設定したサーバー側のrubyのバージョン
@@ -33,11 +35,40 @@ set :log_level, :debug
 # 環境変数の設定
 set :default_env, {
   'NODE_OPTIONS' => '--openssl-legacy-provider',
-  'KAKEIBO_DATABASE_PASSWORD' => ENV["KAKEIBO_DATABASE_PASSWORD"]
 }
 
 # デプロイのタスク
 namespace :deploy do
+  desc 'Bundle install'
+  task :bundle do
+    on roles(:app) do
+      within current_path do
+        execute :bundle, :install
+      end
+    end
+  end
+
+  desc 'Remove cache files'
+  task :remove_cache do
+    on roles(:web) do
+      execute :rm, '-rf', release_path.join('tmp/cache')
+    end
+  end
+
+  before 'deploy:updated', 'deploy:remove_cache'
+
+  # unicornの起動コマンド。実行時はコメントを外して cap production unicorn:start
+  # namespace :unicorn do
+  #   desc 'Start Unicorn'
+  #   task :start do
+  #     on roles(:app) do
+  #       within current_path do
+  #         execute :bundle, :exec, :unicorn, "-c #{fetch(:unicorn_config)} -E #{fetch(:rails_env)} -D"
+  #       end
+  #     end
+  #   end
+  # end
+  
 
   # unicornの再起動
   desc 'Restart application'
@@ -56,6 +87,7 @@ namespace :deploy do
                   sql = "CREATE DATABASE IF NOT EXISTS kakeibo_production;"
                   # クエリの実行。
                 # userとpasswordはmysqlの設定に合わせて
+                # rootユーザーのpasswordは設定しているので、こちらでは実行できない
                 execute "mysql --user=root --password=root -e '#{sql}'"
 
         end

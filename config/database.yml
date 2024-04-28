@@ -9,6 +9,8 @@ default: &default
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   timeout: 5000
 
+# ローカルでproductionビルドしたい時はこっちをproductionにする
+# production:
 development:
   <<: *default
   database: db/development.sqlite3
@@ -19,14 +21,12 @@ development:
 test:
   <<: *default
   database: db/test.sqlite3
-
 production:
   adapter: mysql2
   encoding: utf8
   pool: 5
   database: kakeibo_production
-  username: jun
-  password: <%= ENV['KAKEIBO_DATABASE_PASSWORD'] %>
-  socket: /var/lib/mysql/mysql.sock
-  host: localhost
+  username: <%= Rails.application.credentials.db[:DATABASE_USERNAME] %>
+  password: <%= Rails.application.credentials.db[:KAKEIBO_DATABASE_PASSWORD] %>
+  socket: /var/run/mysqld/mysqld.sock
   port: 3306

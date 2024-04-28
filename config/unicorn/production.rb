@@ -23,6 +23,10 @@ $worker  = 2
 #ホットデプロイをするかしないかを設定
   preload_app true
 
+  before_exec do |server|
+    ENV["BUNDLE_GEMFILE"] = File.join(File.expand_path("../../../../", __FILE__), "current", "Gemfile")
+  end
+
 #fork前に行うことを定義
   before_fork do |server, worker|
     defined?(ActiveRecord::Base) and ActiveRecord::Base.connection.disconnect!

@@ -96,7 +96,6 @@ GEM
       dry-validation (~> 1.0, >= 1.0.0)
     crass (1.0.6)
     deep_merge (1.2.2)
-    digest (3.1.1)
     dry-configurable (0.12.1)
       concurrent-ruby (~> 1.0)
       dry-core (~> 0.5, >= 0.5.0)
@@ -140,7 +139,6 @@ GEM
       activesupport (>= 5.0)
     i18n (1.14.4)
       concurrent-ruby (~> 1.0)
-    io-wait (0.3.1)
     jbuilder (2.11.5)
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
@@ -151,11 +149,8 @@ GEM
     loofah (2.22.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
-    mail (2.8.1)
+    mail (2.7.1)
       mini_mime (>= 0.1.1)
-      net-imap
-      net-pop
-      net-smtp
     marcel (1.0.4)
     method_source (1.1.0)
     mini_mime (1.1.2)
@@ -164,23 +159,10 @@ GEM
     msgpack (1.7.2)
     mutex_m (0.2.0)
     mysql2 (0.5.6)
-    net-imap (0.2.2)
-      digest
-      net-protocol
-      strscan
-    net-pop (0.1.2)
-      net-protocol
-    net-protocol (0.1.2)
-      io-wait
-      timeout
     net-scp (4.0.0)
       net-ssh (>= 2.6.5, < 8.0.0)
     net-sftp (4.0.0)
       net-ssh (>= 5.0.0, < 8.0.0)
-    net-smtp (0.3.0)
-      digest
-      net-protocol
-      timeout
     net-ssh (6.1.0)
     nio4r (2.7.1)
     nokogiri (1.12.5)
@@ -234,17 +216,13 @@ GEM
       ffi (~> 1.0)
     regexp_parser (2.9.0)
     rexml (3.2.6)
-    rubocop (1.28.2)
+    rubocop (0.83.0)
       parallel (~> 1.10)
-      parser (>= 3.1.0.0)
+      parser (>= 2.7.0.1)
       rainbow (>= 2.2.2, < 4.0)
-      regexp_parser (>= 1.8, < 3.0)
       rexml
-      rubocop-ast (>= 1.17.0, < 2.0)
       ruby-progressbar (~> 1.7)
-      unicode-display_width (>= 1.4.0, < 3.0)
-    rubocop-ast (1.17.0)
-      parser (>= 3.1.1.0)
+      unicode-display_width (>= 1.4.0, < 2.0)
     ruby-progressbar (1.13.0)
     rubyzip (2.3.2)
     sass-rails (6.0.0)
@@ -279,17 +257,15 @@ GEM
       net-scp (>= 1.1.2)
       net-sftp (>= 2.1.2)
       net-ssh (>= 2.8.0)
-    strscan (3.1.0)
     thor (1.2.2)
     thread_safe (0.3.6)
     tilt (2.3.0)
-    timeout (0.4.0)
     turbolinks (5.2.1)
       turbolinks-source (~> 5.2)
     turbolinks-source (5.2.0)
     tzinfo (1.2.11)
       thread_safe (~> 0.1)
-    unicode-display_width (2.5.0)
+    unicode-display_width (1.8.0)
     unicorn (6.1.0)
       kgio (~> 2.6)
       raindrops (~> 0.7)
@@ -339,7 +315,7 @@ DEPENDENCIES
   selenium-webdriver
   spring
   spring-watcher-listen (~> 2.0.0)
-  sqlite3 (~> 1.4)
+  sqlite3 (~> 1.4.0)
   turbolinks (~> 5)
   tzinfo-data
   unicorn
@@ -351,4 +327,4 @@ RUBY VERSION
    ruby 2.5.1p57
 
 BUNDLED WITH
-   2.3.26
+   2.3.27
